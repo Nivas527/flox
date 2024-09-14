@@ -31,8 +31,6 @@ class _UserProfileState extends State<UserProfile> {
             // Background Image
             Positioned.fill(
               child: Image.asset(
-                'assets/foxlbg.jpeg', // Replace with your background image asset path
-                fit: BoxFit.cover, // Ensure the image covers the entire background
               ),
             ),
             Padding(
@@ -43,21 +41,15 @@ class _UserProfileState extends State<UserProfile> {
                   AppBar(
                     backgroundColor: Colors.transparent,
                     elevation: 0,
-                    centerTitle: true,  // Center the title
+                    centerTitle: true, // Center the title
                     title: Text(
                       'User Profile',
                       style: TextStyle(color: Colors.white),
                     ),
                     actions: [
-                      IconButton(
-                        icon: Icon(Icons.notifications, color: Colors.white),
-                        onPressed: () {},
-                      )
                     ],
                   ),
-
                 ],
-
               ),
             ),
             // Main content over the background
@@ -75,7 +67,6 @@ class _UserProfileState extends State<UserProfile> {
                           backgroundColor: Colors.white,
                           child: CircleAvatar(
                             radius: 52,
-                            backgroundImage: AssetImage('assets/img.png'), // Replace with your image
                           ),
                         ),
                         Positioned(
@@ -94,7 +85,6 @@ class _UserProfileState extends State<UserProfile> {
                   buildTextField('Name', nameController, false),
                   buildTextField('Contact Number', phoneController, true),
                   buildTextField('E-mail ID', emailController, false),
-                  buildTextField('Address', addressController, false, maxLines: 3),
                   buildDropdownButton(),
                   SizedBox(height: 20),
                   ElevatedButton(
@@ -104,12 +94,10 @@ class _UserProfileState extends State<UserProfile> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
-                      padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Text('Update', style: TextStyle(color: Colors.white,fontSize: 18)),
                   ),
                   SizedBox(height: 120),
                 ],
@@ -118,45 +106,39 @@ class _UserProfileState extends State<UserProfile> {
           ],
         ),
       ),
-
     );
   }
 
-  Widget buildTextField(String labelText, TextEditingController controller, bool isPhone, {int maxLines = 1}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextField(
         controller: controller,
         keyboardType: isPhone ? TextInputType.phone : TextInputType.text,
-        maxLines: maxLines,  // Set maximum lines for address
+        maxLines: maxLines, // Set maximum lines for address
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           labelText: labelText,
-          hintText: labelText == 'Address' ? 'Enter your Address' : null,  // Add hint text specifically for the Address field
-          hintStyle: TextStyle(color: Colors.grey),  // Hint text style
-          hintMaxLines: 1,  // Ensure hint stays on a single line
+          hintStyle: TextStyle(color: Colors.grey), // Hint text style
+          hintMaxLines: 1, // Ensure hint stays on a single line
           labelStyle: TextStyle(color: Colors.grey),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),  // Rounded border
-            borderSide: BorderSide(color: Colors.grey, width: 1.5),  // Adjust border width
+            borderRadius: BorderRadius.circular(10), // Rounded border
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.grey, width: 2),  // Focused border with blue color
           ),
           suffixIcon: isPhone || labelText == 'E-mail ID'
               ? TextButton(
-            onPressed: () {
-              // Handle change action
-            },
-            child: Text('CHANGE', style: TextStyle(color: Colors.red)),
-          )
+                  onPressed: () {
+                    // Handle change action
+                  },
+                  child: Text('CHANGE', style: TextStyle(color: Colors.red)),
+                )
               : null,
         ),
       ),
     );
   }
-
 
   Widget buildDropdownButton() {
     return DropdownButtonFormField<String>(
